@@ -5,3 +5,10 @@ for (i = 0; i < num; i ++) {
     container.appendChild(createDiv);
 }
 
+const squares = document.querySelectorAll('#container div');
+squares.forEach (container => {
+    container.addEventListener ( 'mouseover', () => {
+        container.style.backgroundColor = 'black'
+
+    });
+})
