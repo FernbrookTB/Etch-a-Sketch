@@ -1,4 +1,5 @@
 let num = 256;
+let isErased = false;
 for (i = 0; i < num; i ++) {
     const createDiv = document.createElement('div');
     document.getElementById(container);
@@ -8,9 +9,20 @@ for (i = 0; i < num; i ++) {
 const squares = document.querySelectorAll('#container div');
 squares.forEach (container => {
     container.addEventListener ( 'mouseover', () => {
-        container.style.backgroundColor = isColorMode ? getCurrentColor() : 'black'
+
+          let color;
+    if (isErased) {
+        color = 'white';
+    } else if  (isColorMode) {
+        color = getCurrentColor();
+    } else {
+        color = 'black';
+    }
+    container.style.backgroundColor = color;
 
     });
+  
+      
 
     
 })
@@ -28,19 +40,28 @@ let isColorMode = false;
 
 toggleButton.addEventListener('click', () => { 
     isColorMode = !isColorMode;
+
+    if (isColorMode) {
+        isErased = false;
+     }
     
-    document.body.style.backgroundColor = isColorMode ? '#f0f0f0' : 'white';
+    document.body.style.backgroundColor = isColorMode ? '#ffffff' : 'white';
     colorControl.style.display = isColorMode ? 'block' : 'none';
 });
 
 function erase() {
     const lackOf = document.getElementById('eraser');
 
-let isErased = false;
-
 lackOf.addEventListener('click', () => {
     isErased = !isErased;
+    
+    if (isErased) {
+        isColorMode = false;
+        colorControl.style.display = 'none';
+        document.body.style.backgroundColor = 'white';
+    }
 
     
 } );
 }
+erase();
