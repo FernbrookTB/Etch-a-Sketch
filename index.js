@@ -1,5 +1,6 @@
 let num = 256;
 let isErased = false;
+let isClear = false;
 for (i = 0; i < num; i ++) {
     const createDiv = document.createElement('div');
     document.getElementById(container);
@@ -22,9 +23,6 @@ squares.forEach (container => {
 
     });
   
-      
-
-    
 })
 
 
@@ -65,3 +63,16 @@ lackOf.addEventListener('click', () => {
 } );
 }
 erase();
+
+function clear() {
+    const isClearMode = document.getElementById('clear');
+
+    isClearMode.addEventListener('click', () => { 
+       
+       squares.forEach(container => {
+        container.style.backgroundColor = 'white'
+       })
+       })
+    
+}
+clear();
