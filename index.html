@@ -6,9 +6,16 @@
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<header><h1>Etch-a-Sketch</h1></header>
 <body>
-    <div id="container">
-
+    <div id="buttonContainer">
+        <button id="color">Color</button>
+        <button id="clear">Clear</button>
+        <button id="eraser">Eraser</button>
+    </div>
+    <div id="container"></div>
+    <div id="rgbControls" style="display: none;">
+        <input type="range" id="hueSlider" min="0" max="360" value="0">
     </div>
     <script src="index.js"></script>
 </body>
