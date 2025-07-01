@@ -9,8 +9,22 @@ for (i = 0; i < num; i ++) {
 
 const squares = document.querySelectorAll('#container div');
 squares.forEach (container => {
-    container.addEventListener ( 'mouseover', () => {
+    
+    container.addEventListener ('mousedown', () => {
+             let color;
+    if (isErased) {
+        color = 'white';
+    } else if  (isColorMode) {
+        color = getCurrentColor();
+    } else {
+        color = 'black';
+    }
+    container.style.backgroundColor = color; }   
+    );
 
+    container.addEventListener ( 'mouseover', () => {
+        
+    if (isDrawing){
           let color;
     if (isErased) {
         color = 'white';
@@ -19,9 +33,9 @@ squares.forEach (container => {
     } else {
         color = 'black';
     }
-    container.style.backgroundColor = color;
+    container.style.backgroundColor = color; }
 
-    });
+    }); 
   
 })
 
@@ -76,3 +90,9 @@ function clear() {
     
 }
 clear();
+
+document.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    isDrawing = true;
+});
+document.addEventListener('mouseup', () => isDrawing = false);
