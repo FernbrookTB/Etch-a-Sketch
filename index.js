@@ -1,11 +1,26 @@
-let num = 256;
+let isDrawing = false;
 let isErased = false;
 let isClear = false;
-for (i = 0; i < num; i ++) {
-    const createDiv = document.createElement('div');
-    document.getElementById(container);
-    container.appendChild(createDiv);
-}
+const container = document.getElementById('container');
+function generateGrid(size) {
+    
+
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    
+    const squareSize = 100 / size; 
+
+    for (let i = 0; i < size * size; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        square.style.width = `${squareSize}%`;
+        
+        container.appendChild(square);
+    }
+
+
+
 
 const squares = document.querySelectorAll('#container div');
 squares.forEach (container => {
@@ -38,7 +53,7 @@ squares.forEach (container => {
     }); 
   
 })
-
+}
 
 function getCurrentColor() {
     const hue = document.getElementById('hueSlider').value;
@@ -55,6 +70,10 @@ toggleButton.addEventListener('click', () => {
 
     if (isColorMode) {
         isErased = false;
+        clearActiveStates();
+        toggleButton.classList.add('active');
+     } else {
+        toggleButton.classList.remove('active');
      }
     
     document.body.style.backgroundColor = isColorMode ? '#ffffff' : 'white';
@@ -69,8 +88,12 @@ lackOf.addEventListener('click', () => {
     
     if (isErased) {
         isColorMode = false;
+        clearActiveStates();
+        lackOf.classList.add('active');
         colorControl.style.display = 'none';
         document.body.style.backgroundColor = 'white';
+    } else {
+        lackOf.classList.remove('active');
     }
 
     
@@ -82,7 +105,7 @@ function clear() {
     const isClearMode = document.getElementById('clear');
 
     isClearMode.addEventListener('click', () => { 
-       
+       const squares = document.querySelectorAll('#container .square');
        squares.forEach(container => {
         container.style.backgroundColor = 'white'
        })
@@ -91,8 +114,27 @@ function clear() {
 }
 clear();
 
-document.addEventListener('mousedown', (e) => {
+container.addEventListener('mousedown', (e) => {
     e.preventDefault();
     isDrawing = true;
 });
-document.addEventListener('mouseup', () => isDrawing = false);
+container.addEventListener('mouseup', () => isDrawing = false);
+
+
+
+generateGrid(16);
+
+const gridValue = document.getElementById('gridValue');
+
+const gridSlider = document.getElementById('gridSizesSlider')
+    gridSlider.addEventListener('input', () => {
+    const size = parseInt(gridSlider.value);
+    gridValue.textContent = `${size} x ${size}`;
+    generateGrid(size);
+});
+
+const activeButton = document.querySelectorAll('.active');
+
+function clearActiveStates() {
+    activeButton.forEach(button => button.classList.remove('active'));
+}

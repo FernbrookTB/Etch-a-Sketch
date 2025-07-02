@@ -30,32 +30,38 @@ button {
     margin-left: 15px;
 }
 
+ button.active {
+  background-color: #444;
+  color: white;
+  border: 2px solid #222;
+ }
+
 #container {
     display: flex;
     flex-wrap: wrap;
     outline: 1px solid black;
     box-sizing: border-box;
     width: 640px;
+    height: 640px;
     padding: 0;
     margin: 0;
     gap: 0;
-    column-gap: 0;
-    row-gap: 0;
     justify-content: flex-start;
     align-items: flex-start;
-    box-shadow: black, 5, 5, 5;
     border-radius: 3px;
 }
 
 #container div {
     
-    height: 40px;
+    
     width: 40px;
     box-sizing: border-box;
     font-size: 0;
     line-height: 0;
     margin: 0;
     padding: 0;
+    aspect-ratio: 1 / 1;
+    
 }
 
 #rgbControls {
@@ -77,3 +83,4 @@ button {
     hsl(300, 100%, 50%),
     hsl(360, 100%, 50%));
 }
+

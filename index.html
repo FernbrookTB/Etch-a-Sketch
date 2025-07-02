@@ -9,10 +9,12 @@
 <header><h1>Etch-a-Sketch</h1></header>
 <body>
     <div id="buttonContainer">
-        <button id="color">Color</button>
-        <button id="clear">Clear</button>
-        <button id="eraser">Eraser</button>
+        <button class="active" id="color">Color</button>
+        <button class="active" id="clear">Clear</button>
+        <button class="active" id="eraser">Eraser</button>
     </div>
+    <input type="range" id="gridSizesSlider" min="1" max="64" value="16">
+    <span id="gridValue">16 x 16</span>
     <div id="container"></div>
     <div id="rgbControls" style="display: none;">
         <input type="range" id="hueSlider" min="0" max="360" value="0">
