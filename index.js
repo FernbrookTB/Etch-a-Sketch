@@ -1,6 +1,9 @@
 let isDrawing = false;
 let isErased = false;
 let isClear = false;
+let isGrabMode = false;
+let selectedColor = null;
+let isRainbowMode = false;
 const container = document.getElementById('container');
 function generateGrid(size) {
     
@@ -21,16 +24,28 @@ function generateGrid(size) {
 
 
 
-
 const squares = document.querySelectorAll('#container div');
 squares.forEach (container => {
     
     container.addEventListener ('mousedown', () => {
+            
+    if (isGrabMode) {
+        const grabbedColor = window.getComputedStyle(container).backgroundColor;
+        selectedColor = grabbedColor;
+
+        isColorMode = true;
+        isGrabMode = false;
+        grabberButton.classList.remove('active');
+        toggleButton.classList.add('active');
+        return;
+    }
              let color;
     if (isErased) {
         color = 'white';
-    } else if  (isColorMode) {
-        color = getCurrentColor();
+    } else if (isRainbowMode) {
+        color = getRandomColor();
+    }else if  (isColorMode) {
+        color = selectedColor || getCurrentColor();
     } else {
         color = 'black';
     }
@@ -43,8 +58,10 @@ squares.forEach (container => {
           let color;
     if (isErased) {
         color = 'white';
-    } else if  (isColorMode) {
-        color = getCurrentColor();
+    } else if (isRainbowMode) {
+        color = getRandomColor();
+        } else if  (isColorMode) {
+        color = selectedColor || getCurrentColor();
     } else {
         color = 'black';
     }
@@ -70,13 +87,16 @@ toggleButton.addEventListener('click', () => {
 
     if (isColorMode) {
         isErased = false;
+        isGrabMode = false;
+        isRainbowMode = false;
+        selectedColor = null;
         clearActiveStates();
         toggleButton.classList.add('active');
      } else {
         toggleButton.classList.remove('active');
      }
     
-    document.body.style.backgroundColor = isColorMode ? '#ffffff' : 'white';
+    
     colorControl.style.display = isColorMode ? 'block' : 'none';
 });
 
@@ -88,10 +108,12 @@ lackOf.addEventListener('click', () => {
     
     if (isErased) {
         isColorMode = false;
+        isGrabMode = false;
+        selectedColor = null;
         clearActiveStates();
         lackOf.classList.add('active');
         colorControl.style.display = 'none';
-        document.body.style.backgroundColor = 'white';
+        
     } else {
         lackOf.classList.remove('active');
     }
@@ -114,6 +136,24 @@ function clear() {
 }
 clear();
 
+const grabberButton = document.getElementById('grabColor');
+
+
+grabberButton.addEventListener('click', () => {
+    isGrabMode = !isGrabMode;
+    clearActiveStates();
+
+    if (isGrabMode) {
+        grabberButton.classList.add('active');
+        isColorMode = false;
+        isErased = false;
+        isRainbowMode = false;
+        colorControl.style.display = 'none';
+    } else {
+        grabberButton.classList.remove('active');
+    }
+});
+
 container.addEventListener('mousedown', (e) => {
     e.preventDefault();
     isDrawing = true;
@@ -124,6 +164,25 @@ container.addEventListener('mouseup', () => isDrawing = false);
 
 generateGrid(16);
 
+
+
+const rainbowButton = document.getElementById('rainbow');
+
+      rainbowButton.addEventListener('click', () => {
+        isRainbowMode = !isRainbowMode;
+        if (isRainbowMode) {
+            isColorMode = false;
+            isErased = false;
+            isGrabMode = false; 
+            clearActiveStates();
+            rainbowButton.classList.add('active');
+            toggleButton.classList.add('active');
+        } else {
+            rainbowButton.classList.remove('active');
+            toggleButton.classList.remove('active');
+        }
+      });
+
 const gridValue = document.getElementById('gridValue');
 
 const gridSlider = document.getElementById('gridSizesSlider')
@@ -133,8 +192,16 @@ const gridSlider = document.getElementById('gridSizesSlider')
     generateGrid(size);
 });
 
-const activeButton = document.querySelectorAll('.active');
+function getRandomColor() {
+    const hue = Math.floor(Math.random() * 360);
+    return `hsl(${hue}, 100%, 50%)`;
+}
+
+
+
+
 
 function clearActiveStates() {
+    const activeButton = document.querySelectorAll('.active');
     activeButton.forEach(button => button.classList.remove('active'));
 }
