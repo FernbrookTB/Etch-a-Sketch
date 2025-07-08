@@ -14,7 +14,7 @@ body {
     padding: 0;
     height: 100vh;
     width: 100%;
-    background-color: black;
+    background-color: #F2E088;
 }
 
 header {
@@ -23,11 +23,21 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: sticky;
     
 }
 
 h1{
-    color: white;
+    color: #590A10;
+}
+
+#buttonContainer {
+    border: 2px solid black;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 16px;
 }
 
 button {
@@ -38,8 +48,8 @@ button {
 }
 
  button.active {
-  background-color: #444;
-  color: white;
+  background-color: #590A10;
+  color: #D9C58B;
   border: 2px solid #222;
  }
 
@@ -57,6 +67,7 @@ button {
     align-items: flex-start;
     border-radius: 3px;
     background-color: white;
+    box-shadow: 2px 5px 8px  #590A10;
 }
 
 #container div {
@@ -75,6 +86,7 @@ button {
 #rgbControls {
     width: 640px;
     margin-top: 5px;
+    position: relative;
 }
 
 #hueSlider {
@@ -90,6 +102,23 @@ button {
     hsl(240, 100%, 50%),
     hsl(300, 100%, 50%),
     hsl(360, 100%, 50%));
+    cursor: pointer;
+    outline: none;
+}
+
+#zoomBubble {
+    position: absolute;
+    
+    top: -18px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    pointer-events: none;
+    transform: translateX(-50%);
+    background-color: hsl(0, 100%, 50%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.1s ease;
 }
 
 input[type="range"]::-webkit-range-thumb {

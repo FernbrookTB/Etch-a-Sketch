@@ -83,6 +83,14 @@ squares.forEach (container => {
     container.style.backgroundColor = color; }
 
     }); 
+
+    container.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+
+        let color = 'white';
+        container.style.backgroundColor = color;
+        container.dataset.shade = 0;
+    })
   
 })
 }
@@ -104,6 +112,7 @@ toggleButton.addEventListener('click', () => {
         isErased = false;
         isGrabMode = false;
         isRainbowMode = false;
+        isClassicMode = false;
         selectedColor = null;
         clearActiveStates();
         toggleButton.classList.add('active');
@@ -163,6 +172,7 @@ grabberButton.addEventListener('click', () => {
         isColorMode = false;
         isErased = false;
         isRainbowMode = false;
+        isClassicMode = false;
         colorControl.style.display = 'none';
     } else {
         grabberButton.classList.remove('active');
@@ -188,7 +198,8 @@ const rainbowButton = document.getElementById('rainbow');
         if (isRainbowMode) {
             isColorMode = false;
             isErased = false;
-            isGrabMode = false; 
+            isGrabMode = false;
+            isClassicMode = false; 
             clearActiveStates();
             rainbowButton.classList.add('active');
             toggleButton.classList.add('active');
@@ -232,7 +243,23 @@ function classicMode() {
 
 classicMode();
 
+const zoomBubble = document.getElementById('zoomBubble');
 
+function updateBubble() {
+    const hue = hueSlider.value;
+    const percent = (hue - hueSlider.min) / (hueSlider.max - hueSlider.min);
+
+    const sliderWidth = hueSlider.offsetWidth;
+    const thumbOffset = sliderWidth * percent;
+
+    zoomBubble.style.left = `${thumbOffset}px`
+    zoomBubble.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+}
+
+hueSlider.addEventListener('input', updateBubble);
+hueSlider.addEventListener('mousemove', updateBubble);
+
+updateBubble();
 
 
 
