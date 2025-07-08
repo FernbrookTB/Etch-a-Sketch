@@ -4,6 +4,7 @@ let isClear = false;
 let isGrabMode = false;
 let selectedColor = null;
 let isRainbowMode = false;
+let isClassicMode = false;
 const container = document.getElementById('container');
 function generateGrid(size) {
     
@@ -20,6 +21,8 @@ function generateGrid(size) {
         square.style.width = `${squareSize}%`;
         
         container.appendChild(square);
+
+        square.dataset.shade = 0;
     }
 
 
@@ -46,6 +49,12 @@ squares.forEach (container => {
         color = getRandomColor();
     }else if  (isColorMode) {
         color = selectedColor || getCurrentColor();
+    } else if (isClassicMode) {
+        let shade = parseInt(container.dataset.shade) || 0;
+        if (shade < 10) shade++;
+        container.dataset.shade = shade;
+        const lightness = 100 - (shade * 10);
+        color = `hsl(0, 0%, ${lightness}%)`;
     } else {
         color = 'black';
     }
@@ -60,7 +69,13 @@ squares.forEach (container => {
         color = 'white';
     } else if (isRainbowMode) {
         color = getRandomColor();
-        } else if  (isColorMode) {
+    }  else if (isClassicMode) {
+        let shade = parseInt(container.dataset.shade) || 0;
+        if (shade < 10) shade++;
+        container.dataset.shade = shade;
+        const lightness = 100 - (shade * 10);
+        color = `hsl(0, 0%, ${lightness}%)`;
+    } else if  (isColorMode) {
         color = selectedColor || getCurrentColor();
     } else {
         color = 'black';
@@ -196,6 +211,26 @@ function getRandomColor() {
     const hue = Math.floor(Math.random() * 360);
     return `hsl(${hue}, 100%, 50%)`;
 }
+
+function classicMode() {
+    const classicButton = document.getElementById('classic');
+        classicButton.addEventListener('click', () => {
+          isClassicMode = !isClassicMode;
+          if (isClassicMode) {
+            isColorMode = false;
+            isErased = false;
+            isRainbowMode = false;
+            isGrabMode = false;
+            
+            clearActiveStates();
+            classicButton.classList.add('active');
+          }  else {
+            classicButton.classList.remove('active');
+          }
+        });
+}
+
+classicMode();
 
 
 
