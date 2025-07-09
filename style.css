@@ -28,12 +28,13 @@ header {
 }
 
 h1{
-    font-size: 53px;
+    font-size: 45px;
     color: #590A10;
+    font-family: "Edu NSW ACT Cursive", cursive;
 }
 
 #buttonContainer {
-    border: 1px solid black;
+    outline: 1px solid #8C8564;
     height: 640px;
     display: flex;
     align-items: center;
@@ -44,6 +45,7 @@ h1{
     width: 250px;
     margin-top: 60px;
     box-shadow: 2px 5px 8px  #590A10;
+    background: #8C8564;
 }
 
 button {
@@ -52,7 +54,11 @@ button {
     box-shadow: 2px 5px 8px  #590A10;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-weight: 400;
+    font-size: medium;
+    background: #D9C58B;
+    border: none;
     
 }
 
@@ -63,14 +69,14 @@ button:hover {
  button.active {
   background-color: #590A10;
   color: #D9C58B;
-  border: 2px solid #222;
+  box-shadow: 2px 5px 8px #D9C58B;
   transform: translateY(1px);
  }
 
 #container {
     display: flex;
     flex-wrap: wrap;
-    outline: 1px solid black;
+    outline: 1px solid #D9C58B;
     box-sizing: border-box;
     width: 640px;
     height: 640px;
@@ -125,13 +131,13 @@ button:hover {
     box-shadow: 0 0 5px black;
     appearance: none;
     background: linear-gradient(to right,
-    hsl(0, 100%, 50%),
-    hsl(60, 100%, 50%),
-    hsl(120, 100%, 50%),
-    hsl(180, 100%, 50%),
-    hsl(240, 100%, 50%),
-    hsl(300, 100%, 50%),
-    hsl(360, 100%, 50%));
+    hsl(0, 100%, 65%),
+    hsl(60, 100%, 65%),
+    hsl(120, 100%, 65%),
+    hsl(180, 100%, 65%),
+    hsl(240, 100%, 65%),
+    hsl(300, 100%, 65%),
+    hsl(360, 100%, 65%));
     cursor: pointer;
     outline: none;
 }
@@ -180,3 +186,31 @@ input[type="range"]::-webkit-range-thumb {
 .square {
     transition: background-color 0.4s ease;
 }
+
+#gridSizesSlider {
+    -webkit-appearance: none;
+    background: linear-gradient(to right,#590A10 0%, white 0%);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    height: 8px;
+}
+
+#gridSizesSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background:#D9C58B;
+    height: 24px;
+    width: 24px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px #590A10;
+}
+
+.gridSize {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-size: 12px;
+}
+

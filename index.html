@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap');
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
@@ -16,8 +19,12 @@
         <button class="active" id="grabColor">Grab Color</button>
         <button class="active" id="rainbow">Rainbow</button>
         <button class="active" id="classic">Classic</button>
+        <div class="gridSize">
+            <span>Grid Size</span>
         <input type="range" id="gridSizesSlider" min="1" max="64" value="16">
+        
     <span id="gridValue">16 x 16</span>
+    </div>
     </div>
     <div class="content">
      <div id="rgbControls" style="display: block;">

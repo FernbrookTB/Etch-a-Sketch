@@ -99,7 +99,7 @@ squares.forEach (container => {
 
 function getCurrentColor() {
     const hue = document.getElementById('hueSlider').value;
-        return `hsl(${hue}, 100%, 50%)`;
+        return `hsl(${hue}, 100%, 65%)`;
 }
 
 const toggleButton = document.getElementById('color');
@@ -232,9 +232,16 @@ const gridSlider = document.getElementById('gridSizesSlider')
     generateGrid(size);
 });
 
+gridSlider.addEventListener('input', function () {
+    const val = (this.value - this.min) / (this.max - this.min) * 100;
+    this.style.background = `linear-gradient(to right, #590A10 0%, #590A10 ${val}%, white ${val}%, white 100%)`;
+});
+gridSlider.dispatchEvent(new Event('input'));
+
+
 function getRandomColor() {
-    const hue = Math.floor(Math.random() * 360);
-    return `hsl(${hue}, 100%, 50%)`;
+    const hue = Math.random() * 360;
+    return `hsl(${hue}, 100%, 65%)`;
 }
 
 function classicMode() {
@@ -267,7 +274,7 @@ function updateBubble() {
     const thumbOffset = sliderWidth * percent;
 
     zoomBubble.style.left = `${thumbOffset}px`
-    zoomBubble.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+    zoomBubble.style.backgroundColor = `hsl(${hue}, 100%, 65%)`;
 }
 
 hueSlider.addEventListener('input', updateBubble);
