@@ -5,16 +5,20 @@
     
 }
 
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background-color: #F2E088;
+    padding-bottom: 40px;
 }
 
 header {
@@ -108,6 +112,8 @@ button:hover {
     align-items: center;
     justify-content: space-evenly;
     gap: 60px;
+    max-width: 100vw;
+    
 }
 
 .content{
@@ -194,6 +200,7 @@ input[type="range"]::-webkit-range-thumb {
     cursor: pointer;
     outline: none;
     height: 8px;
+    width: 150px;
 }
 
 #gridSizesSlider::-webkit-slider-thumb {
