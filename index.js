@@ -157,10 +157,16 @@ function clear() {
        squares.forEach(container => {
         container.style.backgroundColor = 'white'
        })
+
+       container.classList.add('shake');
+       setTimeout(() => {
+            container.classList.remove('shake');
+       }, 400);
+
        isClearMode.classList.add('active');
        setTimeout(() => {
             isClearMode.classList.remove('active');
-       }, 70);
+       }, 150);
        })
        
     
