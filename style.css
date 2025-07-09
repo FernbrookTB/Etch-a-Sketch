@@ -28,23 +28,34 @@ header {
 }
 
 h1{
+    font-size: 48px;
     color: #590A10;
 }
 
 #buttonContainer {
-    border: 2px solid black;
-    height: 100px;
+    border: 1px solid black;
+    height: 640px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-right: 16px;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding-top: 12px;
+    border-radius: 3px;
+    width: 200px;
+    margin-top: 60px;
+    box-shadow: 2px 5px 8px  #590A10;
 }
 
 button {
-    height: 35px;
-    width: 100px;
-    margin-bottom: 15px;
-    margin-left: 15px;
+    height: 50px;
+    width: 150px;
+    box-shadow: 2px 5px 8px  #590A10;
+    
+    
+}
+
+button:hover {
+    
 }
 
  button.active {
@@ -83,6 +94,19 @@ button {
     
 }
 
+.mainContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 60px;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #rgbControls {
     width: 640px;
     margin-top: 5px;
@@ -92,7 +116,10 @@ button {
 #hueSlider {
     width: 100%;
     height: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 7px;
+    box-shadow: 0 0 5px black;
     appearance: none;
     background: linear-gradient(to right,
     hsl(0, 100%, 50%),
@@ -109,11 +136,11 @@ button {
 #zoomBubble {
     position: absolute;
     
-    top: -18px;
+    top: 1px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 2px solid #000;
+    
     pointer-events: none;
     transform: translateX(-50%);
     background-color: hsl(0, 100%, 50%);

@@ -5,7 +5,9 @@ let isGrabMode = false;
 let selectedColor = null;
 let isRainbowMode = false;
 let isClassicMode = false;
+
 const container = document.getElementById('container');
+
 function generateGrid(size) {
     
 
@@ -121,7 +123,7 @@ toggleButton.addEventListener('click', () => {
      }
     
     
-    colorControl.style.display = isColorMode ? 'block' : 'none';
+    colorControl.style.display = 'block';
 });
 
 function erase() {
@@ -136,7 +138,7 @@ lackOf.addEventListener('click', () => {
         selectedColor = null;
         clearActiveStates();
         lackOf.classList.add('active');
-        colorControl.style.display = 'none';
+        colorControl.style.display = 'block';
         
     } else {
         lackOf.classList.remove('active');
@@ -155,7 +157,12 @@ function clear() {
        squares.forEach(container => {
         container.style.backgroundColor = 'white'
        })
+       isClearMode.classList.add('active');
+       setTimeout(() => {
+            isClearMode.classList.remove('active');
+       }, 70);
        })
+       
     
 }
 clear();
@@ -173,7 +180,7 @@ grabberButton.addEventListener('click', () => {
         isErased = false;
         isRainbowMode = false;
         isClassicMode = false;
-        colorControl.style.display = 'none';
+        colorControl.style.display = 'block';
     } else {
         grabberButton.classList.remove('active');
     }
@@ -188,6 +195,7 @@ container.addEventListener('mouseup', () => isDrawing = false);
 
 
 generateGrid(16);
+clearActiveStates();
 
 
 
@@ -260,6 +268,19 @@ hueSlider.addEventListener('input', updateBubble);
 hueSlider.addEventListener('mousemove', updateBubble);
 
 updateBubble();
+
+hueSlider.addEventListener('input', () => {
+    isColorMode = true;
+    isErased = false;
+    isGrabMode = false;
+    isRainbowMode = false;
+    isClassicMode = false;
+    selectedColor = null;
+
+    clearActiveStates();
+    toggleButton.classList.add('active');
+    colorControl.style.display = 'block';
+})
 
 
 
